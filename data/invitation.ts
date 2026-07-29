@@ -10,7 +10,7 @@ export const invitation: InvitationConfig = {
     address: "г. Бишкек, проспект Чынгыза Айтматова, 12",
     mapUrl: "https://2gis.kg/bishkek/search/Ресторан%20Ала-Тоо",
   },
-  intro: { video: "/media/loading-screen.mp4", music: "/media/music.mp3", prompt: "Коснитесь, чтобы открыть" },
+  intro: { video: "/media/loading-screen.mp4", poster: "/images/loading-screen.png", music: "/media/music.mp3", prompt: "Коснитесь, чтобы открыть" },
   heroVideo: "/media/hero.mp4",
   greeting: "С большой радостью приглашаем вас разделить с нами один из самых важных и счастливых дней нашей жизни!",
   timeline: [

@@ -11,7 +11,7 @@ export type InvitationConfig = {
   dateLabel: string;
   timeLabel: string;
   venue: { name: string; address: string; mapUrl: string };
-  intro: { video: string; music: string; prompt: string };
+  intro: { video: string; poster: string; music: string; prompt: string };
   heroVideo: string;
   greeting: string;
   timeline: TimelineItem[];

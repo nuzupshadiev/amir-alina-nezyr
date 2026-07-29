@@ -10,5 +10,5 @@ import { Timeline } from "@/sections/Timeline";
 import { WeddingDate } from "@/sections/WeddingDate";
 
 export default function Home() {
-  return <><LoadingScreen videoSrc={invitation.intro.video} musicSrc={invitation.intro.music} prompt={invitation.intro.prompt} /><main className="invitation-shell"><Hero config={invitation} /><WeddingDate config={invitation} /><Countdown target={invitation.date} /><Location venue={invitation.venue} /><Timeline items={invitation.timeline} /><DressCode dressCode={invitation.dressCode} /><RSVP deadline={invitation.rsvpDeadline} endpoint={invitation.rsvpEndpoint} /><Footer names={`${invitation.couple.groom} & ${invitation.couple.bride}`} /></main></>;
+  return <><LoadingScreen videoSrc={invitation.intro.video} posterSrc={invitation.intro.poster} musicSrc={invitation.intro.music} prompt={invitation.intro.prompt} /><main className="invitation-shell"><Hero config={invitation} /><WeddingDate config={invitation} /><Countdown target={invitation.date} /><Location venue={invitation.venue} /><Timeline items={invitation.timeline} /><DressCode dressCode={invitation.dressCode} /><RSVP deadline={invitation.rsvpDeadline} endpoint={invitation.rsvpEndpoint} /><Footer names={`${invitation.couple.groom} & ${invitation.couple.bride}`} /></main></>;
 }
