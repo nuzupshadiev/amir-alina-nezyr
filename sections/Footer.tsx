@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { AnimatedContainer } from "@/components/AnimatedContainer";
+import { invitation, t } from "@/data/invitation";
+import type { Language } from "@/types/invitation";
 
-export function Footer({ names }: { names: string }) {
-  return <footer className="footer"><AnimatedContainer><p>С любовью и благодарностью</p><h2>{names}</h2><p className="footer-note">До встречи на нашем празднике!</p></AnimatedContainer><Image src="/images/floral-footer.png" width={671} height={372} alt="" /></footer>;
+export function Footer({ language }: { language: Language }) {
+  return <footer className="footer"><AnimatedContainer><p>{t(invitation.footer.message, language)}</p><h2>{t(invitation.footer.hosts, language)}</h2><p className="footer-note">{t(invitation.footer.note, language)}</p></AnimatedContainer><Image src="/images/floral-footer.png" width={671} height={372} alt="" /></footer>;
 }

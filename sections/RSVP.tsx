@@ -3,27 +3,29 @@
 import { FormEvent, useState } from "react";
 import { AnimatedContainer } from "@/components/AnimatedContainer";
 import { SectionTitle } from "@/components/SectionTitle";
+import { invitation, t } from "@/data/invitation";
+import { submitRSVP } from "@/lib/rsvp";
+import type { Language } from "@/types/invitation";
 
-export function RSVP({ deadline, endpoint }: { deadline: string; endpoint?: string }) {
-  const [guests, setGuests] = useState(1);
+export function RSVP({ language }: { language: Language }) {
+  const [guestName, setGuestName] = useState("");
+  const [attendance, setAttendance] = useState<"yes" | "no" | "">("");
+  const [guests, setGuests] = useState(invitation.rsvp.minGuests);
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = event.currentTarget;
-    if (!form.reportValidity()) return;
+    if (!event.currentTarget.reportValidity() || !attendance) return;
     setSubmitting(true);
-    const data = new FormData(form);
-    const payload = { name: String(data.get("name")), attendance: String(data.get("attendance")), guests };
+    setError(false);
     try {
-      if (endpoint) {
-        const response = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-        if (!response.ok) throw new Error("Не удалось отправить ответ");
-      }
+      await submitRSVP({ guestName, attendance, guestCount: guests, language, invitationSlug: invitation.slug, submittedAt: new Date().toISOString() }, invitation.rsvp.endpoint);
       setSent(true);
-    } finally { setSubmitting(false); }
+    } catch { setError(true); } finally { setSubmitting(false); }
   }
 
-  return <section className="paper-section rsvp-section" id="rsvp"><AnimatedContainer><SectionTitle eyebrow="Ответьте, пожалуйста">Подтвердите участие</SectionTitle><p className="body-copy">{deadline}</p>{sent ? <div className="success" role="status"><span>♡</span><h3>Спасибо за ответ!</h3><p>Мы с нетерпением ждём этого дня.</p></div> : <form onSubmit={submit} className="rsvp-form"><label>Ваше имя<input name="name" type="text" required autoComplete="name" placeholder="Имя и фамилия" /></label><fieldset><legend>Вы сможете прийти?</legend><label className="radio"><input required type="radio" name="attendance" value="yes" /> Да, с радостью!</label><label className="radio"><input type="radio" name="attendance" value="no" /> К сожалению, не смогу</label></fieldset><div className="guest-field"><span>Количество гостей</span><div className="counter"><button type="button" aria-label="Уменьшить" onClick={() => setGuests(Math.max(1, guests - 1))}>−</button><output>{guests}</output><button type="button" aria-label="Увеличить" onClick={() => setGuests(Math.min(3, guests + 1))}>+</button></div><small>Максимум 3 человека</small></div><button className="garden-button submit-button" disabled={submitting}>{submitting ? "Отправляем…" : "Отправить ответ"}</button></form>}</AnimatedContainer></section>;
+  const labels = invitation.rsvp.labels;
+  return <section className="paper-section rsvp-section" id="rsvp"><AnimatedContainer><SectionTitle eyebrow={t(invitation.rsvp.eyebrow, language)}>{t(invitation.rsvp.heading, language)}</SectionTitle><p className="body-copy">{t(invitation.rsvp.deadline, language)}</p>{sent ? <div className="success" role="status"><span>♡</span><h3>{t(labels.success, language)}</h3><p>{t(labels.successDetail, language)}</p></div> : <form onSubmit={submit} className="rsvp-form"><label>{t(labels.guestName, language)}<input name="name" type="text" required autoComplete="name" placeholder={t(labels.guestNamePlaceholder, language)} value={guestName} onChange={(event) => setGuestName(event.target.value)} /></label><fieldset><legend>{t(labels.attendance, language)}</legend><label className="radio"><input required type="radio" name="attendance" value="yes" checked={attendance === "yes"} onChange={() => setAttendance("yes")} /> {t(invitation.rsvp.attendanceOptions.yes, language)}</label><label className="radio"><input type="radio" name="attendance" value="no" checked={attendance === "no"} onChange={() => setAttendance("no")} /> {t(invitation.rsvp.attendanceOptions.no, language)}</label></fieldset><div className="guest-field"><span>{t(labels.guestCount, language)}</span><div className="counter"><button type="button" aria-label={t(labels.decreaseGuests, language)} onClick={() => setGuests(Math.max(invitation.rsvp.minGuests, guests - 1))}>−</button><output>{guests}</output><button type="button" aria-label={t(labels.increaseGuests, language)} onClick={() => setGuests(Math.min(invitation.rsvp.maxGuests, guests + 1))}>+</button></div><small>{t(labels.guestLimit, language)}</small></div>{error ? <p className="rsvp-error" role="alert">{t(labels.error, language)}</p> : null}<button className="garden-button submit-button" disabled={submitting}>{t(submitting ? labels.submitting : labels.submit, language)}</button></form>}</AnimatedContainer></section>;
 }
