@@ -1,4 +1,5 @@
 import type { Language } from "@/types/invitation";
+import { resolveRsvpEndpoint } from "@/lib/rsvp-endpoint";
 
 export interface RSVPPayload {
   guestName: string;
@@ -10,12 +11,11 @@ export interface RSVPPayload {
 }
 
 export async function submitRSVP(payload: RSVPPayload, endpoint?: string) {
-  if (!endpoint) return { ok: true, preview: true } as const;
-  const response = await fetch(endpoint, {
+  const target = resolveRsvpEndpoint(endpoint, payload.language);
+  const response = await fetch(target, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
   if (!response.ok) throw new Error("RSVP submission failed");
-  return { ok: true, preview: false } as const;
 }
