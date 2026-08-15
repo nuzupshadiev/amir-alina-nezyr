@@ -7,12 +7,17 @@ export function PriglasiCredit({ language }: { language: string }) {
       style={{
         position: "relative",
         zIndex: 2,
-        width: "calc(100% - 2rem)",
-        maxWidth: "22rem",
-        margin: "2.5rem auto 0",
-        padding: "1.25rem 1rem 0",
-        paddingBottom: "max(1rem, env(safe-area-inset-bottom))",
-        borderTop: "1px solid currentColor",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+        columnGap: "0.65rem",
+        rowGap: "0.2rem",
+        boxSizing: "border-box",
+        width: "100%",
+        margin: "1rem auto 0",
+        padding: "0 1rem",
+        paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))",
         color: "inherit",
         opacity: 0.64,
         font: "inherit",
@@ -22,20 +27,9 @@ export function PriglasiCredit({ language }: { language: string }) {
         textAlign: "center",
       }}
     >
-      <p style={{ margin: 0 }}>
-        {kyrgyz ? "Дизайн: " : "Дизайн от "}
-        <a
-          href="https://www.instagram.com/priglasi.design.kg/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "inherit", textUnderlineOffset: "0.18em" }}
-        >
-          @priglasi.design.kg
-        </a>
-      </p>
       <nav
         aria-label={kyrgyz ? "Priglasi Design шилтемелери" : "Ссылки Priglasi Design"}
-        style={{ display: "flex", justifyContent: "center", gap: "0.75rem", marginTop: "0.35rem" }}
+        style={{ display: "flex", justifyContent: "center", gap: "0.65rem" }}
       >
         <a
           href="https://www.instagram.com/priglasi.design.kg/"
@@ -55,7 +49,18 @@ export function PriglasiCredit({ language }: { language: string }) {
           WhatsApp
         </a>
       </nav>
+      <span aria-hidden="true">·</span>
+      <p style={{ margin: 0 }}>
+        {kyrgyz ? "Дизайн: " : "Дизайн от "}
+        <a
+          href="https://www.instagram.com/priglasi.design.kg/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "inherit", textUnderlineOffset: "0.18em" }}
+        >
+          @priglasi.design.kg
+        </a>
+      </p>
     </div>
   );
 }
-
