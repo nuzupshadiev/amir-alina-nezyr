@@ -39,7 +39,7 @@ export function PriglasiCredit({ language }: { language: string }) {
         >
           Instagram
         </a>
-        <span aria-hidden="true">·</span>
+        <span aria-hidden="true" style={{ display: "inline", font: "inherit", letterSpacing: "inherit", textTransform: "none" }}>·</span>
         <a
           href="https://wa.me/996776260702"
           target="_blank"
@@ -49,8 +49,8 @@ export function PriglasiCredit({ language }: { language: string }) {
           WhatsApp
         </a>
       </nav>
-      <span aria-hidden="true">·</span>
-      <p style={{ margin: 0 }}>
+      <span aria-hidden="true" style={{ display: "inline", font: "inherit", letterSpacing: "inherit", textTransform: "none" }}>·</span>
+      <span style={{ display: "inline", font: "inherit", letterSpacing: "inherit", textTransform: "none" }}>
         {kyrgyz ? "Дизайн: " : "Дизайн от "}
         <a
           href="https://www.instagram.com/priglasi.design.kg/"
@@ -60,7 +60,7 @@ export function PriglasiCredit({ language }: { language: string }) {
         >
           @priglasi.design.kg
         </a>
-      </p>
+      </span>
     </div>
   );
 }
