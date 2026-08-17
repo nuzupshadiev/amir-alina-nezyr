@@ -18,5 +18,5 @@ export const invitation = {
   footer: { message: { ru: "С любовью и благодарностью", ky: "Сүйүү жана ыраазычылык менен" }, hosts: { ru: "Азамат & Айдана", ky: "Азамат & Айдана" }, note: { ru: "До встречи на нашем празднике!", ky: "Тойдо жолугушканча!" } },
   controls: { language: { ru: "Выбрать язык", ky: "Тилди тандоо" }, musicOn: { ru: "Включить музыку", ky: "Музыканы күйгүзүү" }, musicOff: { ru: "Выключить музыку", ky: "Музыканы өчүрүү" } },
   metadata: { titleSuffix: { ru: "приглашение на свадьбу", ky: "үйлөнүү тоюна чакыруу" }, description: { ru: "Приглашение на свадебный той Азамата и Айданы", ky: "Азамат менен Айдананын үйлөнүү тоюна чакыруу" } },
-  assets: { loadingVideo: "/media/loading-screen.mp4", loadingPoster: "/images/loading-screen.png", music: "/media/music.mp3", heroVideo: "/media/hero.mp4" },
+  assets: { loadingVideo: "/media/loading-screen.mp4", loadingPoster: "/images/loading-screen.png", music: "/media/music.m4a", heroVideo: "/media/hero.mp4" },
 } satisfies InvitationData;
