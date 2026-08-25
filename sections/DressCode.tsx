@@ -5,5 +5,5 @@ import { invitation, t } from "@/data/invitation";
 import type { Language } from "@/types/invitation";
 
 export function DressCode({ language }: { language: Language }) {
-  return <section className="paper-section dress-section"><AnimatedContainer><SectionTitle>{t(invitation.dressCode.title, language)}</SectionTitle><p className="body-copy">{t(invitation.dressCode.description, language)}</p><div className="palette" aria-label={t(invitation.dressCode.paletteLabel, language)}>{invitation.dressCode.colors.map((color) => <span key={color} style={{ backgroundColor: color }} />)}</div><Image className="table-art" src="/images/floraltable.png" width={519} height={481} alt={t(invitation.dressCode.imageAlt, language)} /></AnimatedContainer></section>;
+  return <section className="paper-section dress-section"><AnimatedContainer><SectionTitle>{t(invitation.dressCode.title, language)}</SectionTitle><p className="body-copy">{t(invitation.dressCode.description, language)}</p><Image className="table-art" src="/images/floraltable.png" width={519} height={481} alt={t(invitation.dressCode.imageAlt, language)} /></AnimatedContainer></section>;
 }

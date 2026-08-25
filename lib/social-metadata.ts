@@ -42,7 +42,7 @@ export function createSocialMetadata({
       description,
       images: [
         {
-          url: "/og-preview.jpg",
+          url: "/og-preview-amir-alina.jpg",
           width: 1200,
           height: 1600,
           alt: title,
@@ -54,8 +54,7 @@ export function createSocialMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-preview.jpg"],
+      images: ["/og-preview-amir-alina.jpg"],
     },
   };
 }
-

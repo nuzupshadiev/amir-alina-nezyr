@@ -1,4 +1,4 @@
-export type Language = "ru" | "ky"; export type InvitationType = "wedding" | "kyz_uzatuu";
+export type Language = "ru" | "ky"; export type InvitationType = "wedding" | "kyz_uzatuu" | "nezr";
 export interface LocalizedText { ru: string; ky: string }
 export interface TimelineItem { time: string; title: LocalizedText; description: LocalizedText; icon: "guests" | "blessing" | "dinner" | "dance" }
 export interface InvitationData {
@@ -9,8 +9,9 @@ export interface InvitationData {
   countdown: { heading: LocalizedText; labels: { days: LocalizedText; hours: LocalizedText; minutes: LocalizedText; seconds: LocalizedText } };
   venue: { eyebrow: LocalizedText; heading: LocalizedText; name: LocalizedText; address: LocalizedText; mapUrl: string; mapButtonText: LocalizedText; imageAlt: LocalizedText };
   timeline: { eyebrow: LocalizedText; heading: LocalizedText; items: TimelineItem[] };
-  dressCode: { title: LocalizedText; description: LocalizedText; paletteLabel: LocalizedText; imageAlt: LocalizedText; colors: string[] };
+  dressCode: { title: LocalizedText; description: LocalizedText; imageAlt: LocalizedText };
   rsvp: { enabled: boolean; endpoint?: string; minGuests: number; maxGuests: number; eyebrow: LocalizedText; heading: LocalizedText; deadline: LocalizedText; labels: { guestName: LocalizedText; guestNamePlaceholder: LocalizedText; attendance: LocalizedText; guestCount: LocalizedText; guestLimit: LocalizedText; submit: LocalizedText; submitting: LocalizedText; success: LocalizedText; successDetail: LocalizedText; error: LocalizedText; decreaseGuests: LocalizedText; increaseGuests: LocalizedText }; attendanceOptions: { yes: LocalizedText; no: LocalizedText } };
+  guestNote: { eyebrow: LocalizedText; heading: LocalizedText; message: LocalizedText };
   footer: { message: LocalizedText; hosts: LocalizedText; note: LocalizedText };
   controls: { language: LocalizedText; musicOn: LocalizedText; musicOff: LocalizedText };
   metadata: { titleSuffix: LocalizedText; description: LocalizedText };
